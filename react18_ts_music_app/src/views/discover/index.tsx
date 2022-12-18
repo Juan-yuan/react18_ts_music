@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, Suspense } from 'react'
 import type { FC, ReactNode } from 'react'
 import { Outlet } from 'react-router-dom'
 
@@ -10,7 +10,9 @@ const Discover: FC<IProps> = () => {
   return (
     <div>
       <div>导航</div>
-      <Outlet />
+      <Suspense fallback="">
+        <Outlet />
+      </Suspense>
     </div>
   )
 }
