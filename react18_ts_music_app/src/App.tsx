@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react'
-import { shallowEqual, useDispatch } from 'react-redux'
 import { useRoutes } from 'react-router-dom'
 import routes from './router'
-import { useAppSelector } from './store'
-import { changeMessage } from './store/modules/counter'
+import { useAppDispatch, useAppSelector, shallowEqualApp } from './store'
+import { changeMessageAction } from './store/modules/counter'
 
 function App() {
   const { count, message } = useAppSelector(
@@ -11,15 +10,15 @@ function App() {
       count: state.counter.count,
       message: state.counter.message
     }),
-    shallowEqual
+    shallowEqualApp
   )
-  const dispatch = useDispatch()
-  const handldClick = () => {
-    dispatch(changeMessage('hahaha'))
+  const dispatch = useAppDispatch()
+  const handldChangeMessage = () => {
+    dispatch(changeMessageAction('hahaha'))
   }
   return (
     <div className="App">
-      <button onClick={handldClick}>{message}</button>
+      <button onClick={handldChangeMessage}>{message}</button>
       <Suspense fallback="">
         <div className="main">{useRoutes(routes)}</div>
       </Suspense>

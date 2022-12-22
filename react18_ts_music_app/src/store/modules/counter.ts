@@ -7,11 +7,11 @@ const counterSlice = createSlice({
     message: 'hehe'
   },
   reducers: {
-    changeMessage(state, { payload }) {
+    changeMessageAction(state, { payload }) {
       state.message = payload
     }
   }
 })
 
-export const { changeMessage } = counterSlice.actions
+export const { changeMessageAction } = counterSlice.actions
 export default counterSlice.reducer
