@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IState } from './types'
 
+const initialState: IState = {
+  count: 100,
+  message: 'hehe',
+  address: 'China',
+  height: 1.88
+}
 const counterSlice = createSlice({
   name: 'counter',
-  initialState: {
-    count: 100,
-    message: 'hehe'
-  },
+  initialState,
   reducers: {
     changeMessageAction(state, { payload }) {
       state.message = payload
