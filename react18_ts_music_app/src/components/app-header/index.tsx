@@ -1,17 +1,40 @@
 import React, { memo } from 'react'
 import type { FC } from 'react'
-import { Link } from 'react-router-dom'
 import { IProps } from './types'
-import { HeaderWrapper } from './style'
+import { HeaderWrapper, HeaderLeft, HeaderRight } from './style'
+import headerTitles from '@/assets/data/header-titles.json'
+import { Link } from 'react-router-dom'
 
 const AppHeader: FC<IProps> = () => {
+  function showItem(item: any) {
+    if (item.type === 'path') {
+      return <Link to={item.link}>{item.title}</Link>
+    } else {
+      return (
+        <a href={item.link} rel="noreferrer" target="_blank">
+          {item.title}
+        </a>
+      )
+    }
+  }
   return (
     <HeaderWrapper>
-      <div className="content">
-        <Link to="/discover">发现音乐</Link>
-        <Link to="/mine">我的音乐</Link>
-        <Link to="/focus">关注</Link>
-        <Link to="/download">下载客户端</Link>
+      <div className="content wrap-v1">
+        <HeaderLeft>
+          <a href="/" className="logo sprite_01">
+            网易云音乐
+          </a>
+          <div className="title-list">
+            {headerTitles.map((item, index) => {
+              return (
+                <div className="item" key={`header-tab-${index}`}>
+                  {showItem(item)}
+                </div>
+              )
+            })}
+          </div>
+        </HeaderLeft>
+        <HeaderRight>Right</HeaderRight>
       </div>
     </HeaderWrapper>
   )
