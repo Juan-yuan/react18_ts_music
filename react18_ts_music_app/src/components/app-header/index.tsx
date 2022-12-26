@@ -27,7 +27,7 @@ const AppHeader: FC<IProps> = () => {
           <div className="title-list">
             {headerTitles.map((item, index) => {
               return (
-                <div className="item" key={`header-tab-${index}`}>
+                <div className="item active" key={`header-tab-${index}`}>
                   {showItem(item)}
                 </div>
               )
