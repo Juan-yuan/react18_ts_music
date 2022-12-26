@@ -37,7 +37,7 @@ export const footerImages = [
 ]
 
 // discover data
-export const dicoverMenu = [
+export const discoverMenu = [
   {
     title: '推荐',
     link: '/discover/recommend'
