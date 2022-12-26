@@ -10,6 +10,11 @@ export const HeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
+
+  .divider {
+    height: 5px;
+    background-color: #c20c0c;
+  }
 `
 
 export const HeaderLeft = styled.div`
