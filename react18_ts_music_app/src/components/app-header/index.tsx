@@ -4,6 +4,8 @@ import { IProps } from './types'
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style'
 import headerTitles from '@/assets/data/header-titles.json'
 import { NavLink } from 'react-router-dom'
+import { Input } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 
 const AppHeader: FC<IProps> = () => {
   function showItem(item: any) {
@@ -44,7 +46,15 @@ const AppHeader: FC<IProps> = () => {
             })}
           </div>
         </HeaderLeft>
-        <HeaderRight>Right</HeaderRight>
+        <HeaderRight>
+          <Input
+            className="search"
+            placeholder="音乐/视频/电台/用户"
+            prefix={<SearchOutlined />}
+          />
+          <span className="center">创作者中心</span>
+          <span className="login">登录</span>
+        </HeaderRight>
       </div>
       <div className="divider"></div>
     </HeaderWrapper>
