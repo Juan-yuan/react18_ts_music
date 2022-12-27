@@ -1,28 +1,15 @@
-import React, { memo, useState, useEffect } from 'react'
-import type { FC, ReactNode } from 'react'
-import hyRequest from '@/service'
-import type { IProps, IBannerData } from './types'
+import React, { memo, useEffect } from 'react'
+import type { FC } from 'react'
+import { useAppDispatch } from '@/store'
+import type { IProps } from './types'
+import { fetchBannerDataAction } from './store/recommend'
 
 const Recommed: FC<IProps> = () => {
-  const [banners, setBanners] = useState<IBannerData[]>([])
-
+  const dispatch = useAppDispatch()
   useEffect(() => {
-    hyRequest
-      .get({
-        url: '/banner'
-      })
-      .then((res) => {
-        setBanners(res.banners)
-      })
+    dispatch(fetchBannerDataAction())
   }, [])
-
-  return (
-    <div>
-      {banners.map((banner, index) => {
-        return <div key={`banner-${index}`}>{banner.imageUrl}</div>
-      })}
-    </div>
-  )
+  return <div>Recommand</div>
 }
 
 export default memo(Recommed)
