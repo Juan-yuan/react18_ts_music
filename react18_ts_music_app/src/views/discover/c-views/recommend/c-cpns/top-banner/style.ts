@@ -31,13 +31,13 @@ export const BannerLeft = styled.div`
     justify-content: center;
 
     > li {
-      margin: 0 apx;
+      margin: 0 2px;
 
       .item {
         display: inline-block;
         width: 20px;
         height: 20px;
-        background-image: url(${b_img}) 3px -343px;
+        background: url(${b_img}) 3px -343px;
         cursor: pointer;
 
         &:hover,
