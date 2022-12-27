@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import { useAppDispatch } from '@/store'
 import type { IProps } from './types'
 import { fetchBannerDataAction } from './store/recommend'
-import TopBannder from '@/views/discover/c-views/recommend/c-cpns/top-banner'
+import TopBanner from '@/views/discover/c-views/recommend/c-cpns/top-banner'
 
 const Recommed: FC<IProps> = () => {
   const dispatch = useAppDispatch()
@@ -12,7 +12,7 @@ const Recommed: FC<IProps> = () => {
   }, [])
   return (
     <div>
-      <TopBannder />
+      <TopBanner />
       Recommand
     </div>
   )
