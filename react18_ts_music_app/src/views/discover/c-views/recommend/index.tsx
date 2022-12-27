@@ -4,6 +4,8 @@ import { useAppDispatch } from '@/store'
 import type { IProps } from './types'
 import { fetchBannerDataAction } from './store/recommend'
 import TopBanner from '@/views/discover/c-views/recommend/c-cpns/top-banner'
+import { RecommendWrapper } from './style'
+import HotRecommend from './c-cpns/hot-recommend'
 
 const Recommed: FC<IProps> = () => {
   const dispatch = useAppDispatch()
@@ -11,10 +13,15 @@ const Recommed: FC<IProps> = () => {
     dispatch(fetchBannerDataAction())
   }, [])
   return (
-    <div>
+    <RecommendWrapper>
       <TopBanner />
-      Recommand
-    </div>
+      <div className="content wrap-v2">
+        <div className="left">
+          <HotRecommend />
+        </div>
+        <div className="right">right</div>
+      </div>
+    </RecommendWrapper>
   )
 }
 

@@ -5,7 +5,6 @@ import { BannerControl, BannerLeft, BannerRight, BannerWrapper } from './style'
 import { useAppSelector } from '@/store'
 import { shallowEqual } from 'react-redux'
 import classNames from 'classnames'
-console.log('classNames', classNames)
 interface IProps {
   children?: ReactNode
 }
