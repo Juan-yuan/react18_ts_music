@@ -18,6 +18,7 @@ const Recommed: FC<IProps> = () => {
       <div className="content wrap-v2">
         <div className="left">
           <HotRecommend />
+          left
         </div>
         <div className="right">right</div>
       </div>

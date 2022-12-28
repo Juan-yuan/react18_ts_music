@@ -8,12 +8,12 @@ export const RecommendWrapper = styled.div`
     display: flex;
   }
 
-  > .left {
+  .left {
     padding: 20px;
     width: 729px;
   }
 
-  > .right {
+  .right {
     margin-left: 1px;
     border-width: 0 1px;
   }
