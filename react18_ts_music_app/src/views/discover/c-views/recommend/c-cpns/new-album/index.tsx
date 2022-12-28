@@ -5,6 +5,7 @@ import { AlbumWrapper } from './style'
 import { IProps } from './types'
 import AreaHeaderV1 from '@/components/area-header-v1'
 import { useAppSelector } from '@/store'
+import NewAlbumItem from '@/components/new-album-item'
 
 const NewAlbum: FC<IProps> = () => {
   const { newAlbums } = useAppSelector((state) => ({
@@ -30,10 +31,12 @@ const NewAlbum: FC<IProps> = () => {
           <Carousel autoplay ref={bannerRef} dots={false} speed={1500}>
             {[0, 1].map((item, index) => {
               return (
-                <div className="album-list" key={`${item}-${index}`}>
-                  {newAlbums.slice(item * 5, (item + 1) * 5).map((album) => {
-                    return <div key={album.id}>{album.name}</div>
-                  })}
+                <div key={`${item}-${index}`}>
+                  <div className="album-list">
+                    {newAlbums.slice(item * 5, (item + 1) * 5).map((album) => {
+                      return <NewAlbumItem key={album.id} itemData={album} />
+                    })}
+                  </div>
                 </div>
               )
             })}

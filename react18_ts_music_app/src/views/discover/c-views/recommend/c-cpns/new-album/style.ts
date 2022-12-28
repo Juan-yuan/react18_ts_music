@@ -35,6 +35,12 @@ export const AlbumWrapper = styled.div`
       }
     }
 
+    .banner {
+      width: 100%;
+      flex: 1;
+      overflow: hidden;
+    }
+
     .album {
       width: 640px;
       height: 150px;
@@ -44,7 +50,7 @@ export const AlbumWrapper = styled.div`
         overflow: hidden;
       }
 
-      .page {
+      .album-list {
         display: flex !important;
         justify-content: space-between;
         align-items: center;
