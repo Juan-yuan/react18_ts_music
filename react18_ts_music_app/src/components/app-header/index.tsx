@@ -29,6 +29,7 @@ const AppHeader: FC<IProps> = () => {
       )
     }
   }
+
   return (
     <HeaderWrapper>
       <div className="content wrap-v1">

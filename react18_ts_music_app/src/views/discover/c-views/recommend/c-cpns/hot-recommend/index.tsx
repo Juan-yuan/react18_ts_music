@@ -4,13 +4,14 @@ import { HotWrapper } from './style'
 import AreaHeaderV1 from '@/components/area-header-v1'
 import { useAppSelector } from '@/store'
 import { shallowEqual } from 'react-redux'
+import SongMenuItem from '@/components/song-menu-item'
 
 interface IProps {
   children?: ReactNode
 }
 
 const HotRecommend: FC<IProps> = () => {
-  const { hotRecommends } = useAppSelector(
+  const { hotRecommends = [] } = useAppSelector(
     (state) => ({
       hotRecommends: state.recommend.hotRecommends
     }),
@@ -24,13 +25,9 @@ const HotRecommend: FC<IProps> = () => {
         keywords={['华语', '流行', '摇滚', '民谣', '电子']}
         moreLink="/discover/songs"
       />
-      <div className="hot-recommend">
+      <div className="recommend-list">
         {hotRecommends.map((item, index) => {
-          return (
-            <div className="item" key={`${item}-${index}`}>
-              {item.name}
-            </div>
-          )
+          return <SongMenuItem key={`${item}-${index}`} itemData={item} />
         })}
       </div>
     </HotWrapper>
