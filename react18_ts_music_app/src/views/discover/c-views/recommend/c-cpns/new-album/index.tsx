@@ -4,8 +4,12 @@ import { Carousel } from 'antd'
 import { AlbumWrapper } from './style'
 import { IProps } from './types'
 import AreaHeaderV1 from '@/components/area-header-v1'
+import { useAppSelector } from '@/store'
 
 const NewAlbum: FC<IProps> = () => {
+  const { newAlbums } = useAppSelector((state) => ({
+    newAlbums: state.recommend.newAlbums
+  }))
   const handlePrevClick = () => {
     bannerRef.current?.prev()
   }
@@ -22,10 +26,16 @@ const NewAlbum: FC<IProps> = () => {
           className="arrow sprite_02 arrow-left"
           onClick={handlePrevClick}
         ></button>
-        <div className="banner">
-          <Carousel autoplay ref={bannerRef} dots={false} speed={2000}>
-            {[1, 2].map((item, index) => {
-              return <h1 key={index}>{item}</h1>
+        <div className="album">
+          <Carousel autoplay ref={bannerRef} dots={false} speed={1500}>
+            {[0, 1].map((item, index) => {
+              return (
+                <div className="album-list" key={`${item}-${index}`}>
+                  {newAlbums.slice(item * 5, (item + 1) * 5).map((album) => {
+                    return <div key={album.id}>{album.name}</div>
+                  })}
+                </div>
+              )
             })}
           </Carousel>
         </div>
