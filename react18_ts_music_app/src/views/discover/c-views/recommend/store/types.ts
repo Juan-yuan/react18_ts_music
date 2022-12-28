@@ -13,4 +13,5 @@ export interface IBannerData {
 export interface IRecommendState {
   banners: IBannerData[]
   hotRecommends: any[]
+  newAlbums: any[]
 }
