@@ -9,6 +9,7 @@ import {
 import TopBanner from '@/views/discover/c-views/recommend/c-cpns/top-banner'
 import { RecommendWrapper } from './style'
 import HotRecommend from './c-cpns/hot-recommend'
+import NewAlbum from './c-cpns/new-album'
 
 const Recommed: FC<IProps> = () => {
   const dispatch = useAppDispatch()
@@ -23,7 +24,7 @@ const Recommed: FC<IProps> = () => {
       <div className="content wrap-v2">
         <div className="left">
           <HotRecommend />
-          left
+          <NewAlbum />
         </div>
         <div className="right">right</div>
       </div>
