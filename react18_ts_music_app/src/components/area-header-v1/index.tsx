@@ -1,18 +1,21 @@
 import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 import { HeaderV1Wrapper } from './style'
 import { Link } from 'react-router-dom'
+import { IProps } from './types'
 
-interface IProps {
-  children?: ReactNode
-}
+const AreaHeaderV1: FC<IProps> = (props) => {
+  const {
+    title = '默认标题',
+    keywords = [],
+    moreText = '更多',
+    moreLink = '/'
+  } = props
 
-const AreaHeaderV1: FC<IProps> = () => {
-  const keywords = ['华语', '流行', '摇滚']
   return (
     <HeaderV1Wrapper className="sprite_02">
       <div className="left">
-        <h3 className="title">热门推荐</h3>
+        <h3 className="title">{title}</h3>
         <div className="keywords">
           {keywords.map((item) => {
             return (
@@ -25,8 +28,8 @@ const AreaHeaderV1: FC<IProps> = () => {
         </div>
       </div>
       <div className="right">
-        <Link to="/" className="more">
-          更多
+        <Link to={moreLink} className="more">
+          {moreText}
         </Link>
         <i className="icon sprite_02"></i>
       </div>
