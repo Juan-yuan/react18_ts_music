@@ -28,6 +28,13 @@ export const HeaderV1Wrapper = styled.div`
         position: relative;
         top: 2px;
 
+        .link {
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+
         .divider {
           margin: 0 15px;
           color: #ccc;
@@ -45,6 +52,13 @@ export const HeaderV1Wrapper = styled.div`
   .right {
     display: flex;
     align-items: center;
+
+    .more {
+      &:hover {
+        text-decoration: underline;
+        color: #333;
+      }
+    }
 
     .icon {
       display: inline-block;

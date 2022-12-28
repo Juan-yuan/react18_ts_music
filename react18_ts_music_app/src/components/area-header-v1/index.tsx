@@ -17,7 +17,7 @@ const AreaHeaderV1: FC<IProps> = () => {
           {keywords.map((item) => {
             return (
               <div className="item" key={item}>
-                <span className="text">{item}</span>
+                <span className="text link">{item}</span>
                 <span className="divider">|</span>
               </div>
             )
@@ -25,7 +25,9 @@ const AreaHeaderV1: FC<IProps> = () => {
         </div>
       </div>
       <div className="right">
-        <Link to="/">更多</Link>
+        <Link to="/" className="more">
+          更多
+        </Link>
         <i className="icon sprite_02"></i>
       </div>
     </HeaderV1Wrapper>
