@@ -18,8 +18,8 @@ export const fetchHotRecommendAction = createAsyncThunk(
   'hotRecommend',
   async (arg, { dispatch }) => {
     try {
-      const res = await getHotRecommend()
-      console.log('res', res)
+      const res = await getHotRecommend(8)
+      dispatch(changeHotRecommendsAction(res.result))
     } catch (e) {
       console.log('error', e)
     }
@@ -27,7 +27,8 @@ export const fetchHotRecommendAction = createAsyncThunk(
 )
 
 const initialState: IRecommendState = {
-  banners: []
+  banners: [],
+  hotRecommends: []
 }
 
 const recommendSlice = createSlice({
@@ -36,9 +37,13 @@ const recommendSlice = createSlice({
   reducers: {
     changeBannersAction(state, { payload }) {
       state.banners = payload
+    },
+    changeHotRecommendsAction(state, { payload }) {
+      state.hotRecommends = payload
     }
   }
 })
 
-export const { changeBannersAction } = recommendSlice.actions
+export const { changeBannersAction, changeHotRecommendsAction } =
+  recommendSlice.actions
 export default recommendSlice.reducer

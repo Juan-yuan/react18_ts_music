@@ -11,7 +11,7 @@ interface IProps {
 
 const TopBanner: FC<IProps> = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const { banners } = useAppSelector(
+  const { banners = [] } = useAppSelector(
     (state) => ({
       banners: state.recommend.banners
     }),
