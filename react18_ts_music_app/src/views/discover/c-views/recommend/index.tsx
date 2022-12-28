@@ -3,9 +3,10 @@ import type { FC } from 'react'
 import { useAppDispatch } from '@/store'
 import type { IProps } from './types'
 import {
-  fetchBannerDataAction,
-  fetchHotRecommendAction,
-  fetchNewAlbumAction
+  // fetchBannerDataAction,
+  // fetchHotRecommendAction,
+  // fetchNewAlbumAction
+  fetchRecommendDataAction
 } from './store/recommend'
 import TopBanner from '@/views/discover/c-views/recommend/c-cpns/top-banner'
 import { RecommendWrapper } from './style'
@@ -15,9 +16,10 @@ import NewAlbum from './c-cpns/new-album'
 const Recommed: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchBannerDataAction())
-    dispatch(fetchHotRecommendAction())
-    dispatch(fetchNewAlbumAction())
+    dispatch(fetchRecommendDataAction())
+    // dispatch(fetchBannerDataAction())
+    // dispatch(fetchHotRecommendAction())
+    // dispatch(fetchNewAlbumAction())
   }, [])
 
   return (

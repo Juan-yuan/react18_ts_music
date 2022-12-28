@@ -2,39 +2,54 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { IRecommendState } from './types'
 import { getBanners, getHotRecommend, getNewAlbum } from '../service/recommend'
 
-export const fetchBannerDataAction = createAsyncThunk(
-  'banners',
-  async (arg, { dispatch }) => {
-    try {
-      const res = await getBanners()
+// export const fetchBannerDataAction = createAsyncThunk(
+//   'banners',
+//   async (arg, { dispatch }) => {
+//     try {
+//       const res = await getBanners()
+//       dispatch(changeBannersAction(res.banners))
+//     } catch (e) {
+//       console.log('error', e)
+//     }
+//   }
+// )
+
+// export const fetchHotRecommendAction = createAsyncThunk(
+//   'hotRecommend',
+//   async (arg, { dispatch }) => {
+//     try {
+//       const res = await getHotRecommend(8)
+//       dispatch(changeHotRecommendsAction(res.result))
+//     } catch (e) {
+//       console.log('error', e)
+//     }
+//   }
+// )
+
+// export const fetchNewAlbumAction = createAsyncThunk(
+//   'newAlbum',
+//   async (arg, { dispatch }) => {
+//     try {
+//       const res = await getNewAlbum()
+//       dispatch(changeNewAlbumsAction(res.albums))
+//     } catch (e) {
+//       console.log('error', e)
+//     }
+//   }
+// )
+
+export const fetchRecommendDataAction = createAsyncThunk(
+  'fetchdata',
+  (_, { dispatch }) => {
+    getBanners().then((res) => {
       dispatch(changeBannersAction(res.banners))
-    } catch (e) {
-      console.log('error', e)
-    }
-  }
-)
-
-export const fetchHotRecommendAction = createAsyncThunk(
-  'hotRecommend',
-  async (arg, { dispatch }) => {
-    try {
-      const res = await getHotRecommend(8)
+    })
+    getHotRecommend(8).then((res) => {
       dispatch(changeHotRecommendsAction(res.result))
-    } catch (e) {
-      console.log('error', e)
-    }
-  }
-)
-
-export const fetchNewAlbumAction = createAsyncThunk(
-  'newAlbum',
-  async (arg, { dispatch }) => {
-    try {
-      const res = await getNewAlbum()
+    })
+    getNewAlbum().then((res) => {
       dispatch(changeNewAlbumsAction(res.albums))
-    } catch (e) {
-      console.log('error', e)
-    }
+    })
   }
 )
 

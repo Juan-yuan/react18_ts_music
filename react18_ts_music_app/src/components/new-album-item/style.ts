@@ -6,7 +6,8 @@ export const AlbumItemWrapper = styled.div`
     width: 118px;
     height: 100px;
     overflow: hidden;
-    margin-top: 15px;
+    margin-top: 8px;
+    margin-bottom: 5px;
 
     img {
       width: 100px;
@@ -27,7 +28,6 @@ export const AlbumItemWrapper = styled.div`
   .album-info {
     font-size: 12px;
     width: 100px;
-    padding-top: 5px;
 
     .name {
       color: #000;
