@@ -2,13 +2,13 @@ import React, { memo } from 'react'
 import type { FC } from 'react'
 import { MenuItemWrapper } from './style'
 import { IProps } from './types'
-import { formatCount } from '@/utils/format'
+import { formatCount, getImageSize } from '@/utils/format'
 
 const SongMenuItem: FC<IProps> = ({ itemData }) => {
   return (
     <MenuItemWrapper>
       <div className="top">
-        <img src={itemData.picUrl + '?param=140x140'} alt="" />
+        <img src={getImageSize(itemData.picUrl, 140)} alt="" />
         <div className="cover sprite_cover">
           <div className="info sprite_cover">
             <span>
