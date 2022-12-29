@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { useAppDispatch } from '@/store'
 import type { IProps } from './types'
 import {
+  fetchRankingDataAction,
   // fetchBannerDataAction,
   // fetchHotRecommendAction,
   // fetchNewAlbumAction
@@ -18,6 +19,7 @@ const Recommed: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchRecommendDataAction())
+    dispatch(fetchRankingDataAction())
     // dispatch(fetchBannerDataAction())
     // dispatch(fetchHotRecommendAction())
     // dispatch(fetchNewAlbumAction())
