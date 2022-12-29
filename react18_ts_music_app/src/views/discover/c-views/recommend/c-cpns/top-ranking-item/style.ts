@@ -97,7 +97,7 @@ export const RankingItemWrapper = styled.div`
         .name {
           font-size: 12px;
           flex: 1;
-          color: #333;
+          color: #000;
           font-weight: 700;
           white-space: nowrap;
           text-overflow: ellipsis;
