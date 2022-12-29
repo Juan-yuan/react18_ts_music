@@ -15,6 +15,8 @@ import HotRecommend from './c-cpns/hot-recommend'
 import NewAlbum from './c-cpns/new-album'
 import TopRanking from './c-cpns/top-ranking'
 import UserLogin from './c-cpns/user-login'
+import SettleSinger from './c-cpns/settle-singer'
+import HotAnchor from './c-cpns/hot-anchor'
 
 const Recommed: FC<IProps> = () => {
   const dispatch = useAppDispatch()
@@ -37,8 +39,8 @@ const Recommed: FC<IProps> = () => {
         </div>
         <div className="right">
           <UserLogin />
-          <div>入驻歌手</div>
-          <div>热门主播</div>
+          <SettleSinger />
+          <HotAnchor />
         </div>
       </div>
     </RecommendWrapper>
