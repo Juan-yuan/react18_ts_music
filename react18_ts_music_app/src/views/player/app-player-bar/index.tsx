@@ -98,7 +98,7 @@ const AppPlayerBar: FC<IProps> = () => {
           <div className="info">
             <div className="song">
               <span>{currentSong.name}</span>
-              <span className="song-name">{currentSong.ar[0]?.name}</span>
+              <span className="song-name">{currentSong?.ar?.[0]?.name}</span>
             </div>
             <div className="progress">
               <Slider
