@@ -11,9 +11,12 @@ export const RecommendWrapper = styled.div`
       width: 730px;
       border-right: 1px solid #ccc;
     }
+
     > .right {
+      width: 250px;
       margin-left: 1px;
       border-width: 0 1px;
+      background: #fff;
     }
   }
 `

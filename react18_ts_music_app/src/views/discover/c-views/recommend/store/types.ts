@@ -15,4 +15,5 @@ export interface IRecommendState {
   hotRecommends: any[]
   newAlbums: any[]
   rankings: any[]
+  settleSingers: any[]
 }
