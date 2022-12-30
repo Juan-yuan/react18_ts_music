@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { BarControlProps } from './type'
 import progress_bar from '@/assets/img/progress_bar.png'
 import sprite_icon from '@/assets/img/sprite_icon.png'
 import pip from '@/assets/img/pip_icon.png'
@@ -25,7 +26,7 @@ export const PlayerBarWrapper = styled.div`
   }
 `
 
-export const BarControl = styled.div`
+export const BarControl = styled.div<BarControlProps>`
   display: flex;
   align-items: center;
 
@@ -47,7 +48,7 @@ export const BarControl = styled.div`
     width: 36px;
     height: 36px;
     margin: 0 8px;
-    background-position: 0 -165px; // -204px
+    background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
   }
 
   .next {
@@ -76,9 +77,10 @@ export const BarPlayerInfo = styled.div`
       top: 8px;
       left: 8px;
 
-      .singer-name {
+      .song-name {
         color: #a1a1a1;
         margin-left: 10px;
+        margin-right: 10px;
       }
     }
 
@@ -103,9 +105,18 @@ export const BarPlayerInfo = styled.div`
         .ant-slider-handle {
           width: 22px;
           height: 24px;
+          position: absolute;
           border: none;
           margin-top: -7px;
           background: url(${sprite_icon}) 0 -250px;
+
+          &::before {
+            display: none;
+          }
+
+          &::after {
+            display: none;
+          }
         }
       }
 
