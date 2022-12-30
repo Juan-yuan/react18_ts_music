@@ -9,7 +9,7 @@ const NewAlbumItem: FC<IProps> = ({ itemData }) => {
     <AlbumItemWrapper>
       <div className="album-image">
         <img src={getImageSize(itemData.picUrl, 100)} alt="" />
-        <a href="/" className="sprite_cover"></a>
+        <a href="/" className="sprite_cover cover"></a>
       </div>
       <div className="album-info">
         <div className="name">{itemData.name}</div>

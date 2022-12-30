@@ -14,8 +14,8 @@ const TopRankingItem: FC<IProps> = ({ itemData }) => {
     <RankingItemWrapper>
       <div className="header">
         <div className="image">
+          <div className="cover sprite_cover"></div>
           <img src={getImageSize(itemData.coverImgUrl, 80)} alt="" />
-          <a href="/" className="sprite_cover"></a>
         </div>
         <div className="info">
           <div className="name">{itemData.name}</div>
