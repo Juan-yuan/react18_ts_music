@@ -18,6 +18,7 @@ const AppPlayerBar: FC<IProps> = () => {
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
+  const [isSliding, setIsSliding] = useState(false)
 
   const audioRef = useRef<HTMLAudioElement>(null)
   const { currentSong } = useAppSelector(
@@ -28,8 +29,7 @@ const AppPlayerBar: FC<IProps> = () => {
   )
 
   useEffect(() => {
-    // audioRef.current!.src = currentSong && getPlaySong(1967771949)
-    audioRef.current!.src = currentSong && getPlaySong(0)
+    audioRef.current!.src = currentSong && getPlaySong(1967771949)
     audioRef.current
       ?.play()
       .then((res) => {
@@ -46,14 +46,34 @@ const AppPlayerBar: FC<IProps> = () => {
     setIsPlaying(!isPlaying)
     isPlaying
       ? audioRef.current?.pause()
-      : audioRef.current?.play().catch(() => setIsPlaying(!isPlaying))
+      : audioRef.current?.play().catch(() => setIsPlaying(false))
+
+    setIsPlaying(!isPlaying)
   }
 
   function handleTimeUpdate() {
     const currentTime = audioRef.current!.currentTime * 1000
-    const progress = ((currentTime * 1000) / duration) * 100
-    setProgress(progress)
+    if (!isSliding) {
+      const progress = (currentTime / duration) * 100
+      setProgress(progress)
+      setCurrentTime(currentTime)
+    }
+  }
+
+  function handleSliderChanging(value: number) {
+    setIsSliding(true)
+    setProgress(value)
+
+    const currentTime = (value / 100) * duration
     setCurrentTime(currentTime)
+  }
+
+  function handleSliderChanged(value: number) {
+    const currentTime = (value / 100) * duration
+    audioRef.current!.currentTime = currentTime / 1000
+    setCurrentTime(currentTime)
+    setProgress(value)
+    setIsSliding(false)
   }
 
   return (
@@ -85,6 +105,8 @@ const AppPlayerBar: FC<IProps> = () => {
                 step={0.5}
                 value={progress}
                 tooltip={{ formatter: null }}
+                onAfterChange={handleSliderChanged}
+                onChange={handleSliderChanging}
               />
               <div className="time">
                 <span className="current">{formatTime(currentTime)}</span>
