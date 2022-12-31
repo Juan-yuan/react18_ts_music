@@ -12,7 +12,11 @@ import { shallowEqualApp, useAppDispatch, useAppSelector } from '@/store'
 import { formatTime, getImageSize } from '@/utils/format'
 import { getPlaySong } from '@/utils/handle-player'
 import { IProps } from './type'
-import { changeLyricsIndexAction, changePlayModeAction } from '../store/player'
+import {
+  changeLyricsIndexAction,
+  changeMusicAction,
+  changePlayModeAction
+} from '../store/player'
 
 const AppPlayerBar: FC<IProps> = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -34,7 +38,7 @@ const AppPlayerBar: FC<IProps> = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    audioRef.current!.src = currentSong && getPlaySong(1967771949)
+    audioRef.current!.src = currentSong && getPlaySong(currentSong.id)
     audioRef.current
       ?.play()
       .then((res) => {
@@ -54,6 +58,10 @@ const AppPlayerBar: FC<IProps> = () => {
       : audioRef.current?.play().catch(() => setIsPlaying(false))
 
     setIsPlaying(!isPlaying)
+  }
+
+  function handleChangeMusic(isNext = true) {
+    dispatch(changeMusicAction(isNext))
   }
 
   function handleTimeUpdate() {
@@ -109,12 +117,18 @@ const AppPlayerBar: FC<IProps> = () => {
     <PlayerBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
         <BarControl isPlaying={isPlaying}>
-          <button className="btn sprite_playbar prev"></button>
+          <button
+            className="btn sprite_playbar prev"
+            onClick={() => handleChangeMusic(false)}
+          ></button>
           <button
             className="btn sprite_playbar play"
             onClick={handlePlayBtnClick}
           ></button>
-          <button className="btn sprite_playbar next"></button>
+          <button
+            className="btn sprite_playbar next"
+            onClick={() => handleChangeMusic(true)}
+          ></button>
         </BarControl>
         <BarPlayerInfo>
           <Link to="/player">
