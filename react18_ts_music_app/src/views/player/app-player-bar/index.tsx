@@ -1,6 +1,6 @@
 import React, { memo, useState, useRef, useEffect } from 'react'
 import type { FC } from 'react'
-import { Slider } from 'antd'
+import { Slider, message } from 'antd'
 import {
   BarControl,
   BarOperator,
@@ -8,10 +8,11 @@ import {
   PlayerBarWrapper
 } from './style'
 import { Link } from 'react-router-dom'
-import { shallowEqualApp, useAppSelector } from '@/store'
+import { shallowEqualApp, useAppDispatch, useAppSelector } from '@/store'
 import { formatTime, getImageSize } from '@/utils/format'
 import { getPlaySong } from '@/utils/handle-player'
 import { IProps } from './type'
+import { changeLyricsIndexAction } from '../store/player'
 
 const AppPlayerBar: FC<IProps> = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -21,12 +22,15 @@ const AppPlayerBar: FC<IProps> = () => {
   const [isSliding, setIsSliding] = useState(false)
 
   const audioRef = useRef<HTMLAudioElement>(null)
-  const { currentSong } = useAppSelector(
+  const { currentSong, lyrics, lyricIndex } = useAppSelector(
     (state) => ({
-      currentSong: state.player.currentSong
+      currentSong: state.player.currentSong,
+      lyrics: state.player.lyrics,
+      lyricIndex: state.player.lyricIndex
     }),
     shallowEqualApp
   )
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     audioRef.current!.src = currentSong && getPlaySong(1967771949)
@@ -58,6 +62,24 @@ const AppPlayerBar: FC<IProps> = () => {
       setProgress(progress)
       setCurrentTime(currentTime)
     }
+    let index = lyrics.length - 1
+    for (let i = 0; i < lyrics.length; i++) {
+      const lyric = lyrics[i]
+      if (lyric.time > currentTime) {
+        index = i - 1
+        break
+      }
+    }
+
+    if (lyricIndex === index || index === -1) return
+    dispatch(changeLyricsIndexAction(index))
+
+    // 展示message
+    message.open({
+      content: lyrics[index].text,
+      key: 'lyric',
+      duration: 0
+    })
   }
 
   function handleSliderChanging(value: number) {

@@ -25,11 +25,17 @@ export const fetchCurrentSongAction = createAsyncThunk(
 interface IPlayerState {
   currentSong: any
   lyrics: ILyric[]
+  lyricIndex: number
+  playSongList: []
+  playSongIndex: number
 }
 
 const initialState: IPlayerState = {
   currentSong: {},
-  lyrics: []
+  lyrics: [],
+  lyricIndex: -1,
+  playSongList: [],
+  playSongIndex: -1
 }
 
 const playerSlice = createSlice({
@@ -41,10 +47,16 @@ const playerSlice = createSlice({
     },
     changeLyricsAction(state, { payload }) {
       state.lyrics = payload
+    },
+    changeLyricsIndexAction(state, { payload }) {
+      state.lyricIndex = payload
     }
   }
 })
 
-export const { changeCurrentSongAction, changeLyricsAction } =
-  playerSlice.actions
+export const {
+  changeCurrentSongAction,
+  changeLyricsAction,
+  changeLyricsIndexAction
+} = playerSlice.actions
 export default playerSlice.reducer
