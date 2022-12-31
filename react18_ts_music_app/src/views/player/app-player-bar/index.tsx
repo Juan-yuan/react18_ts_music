@@ -117,6 +117,8 @@ const AppPlayerBar: FC<IProps> = () => {
     if (playMode === 2) {
       audioRef.current!.currentTime = 0
       audioRef.current?.play()
+    } else {
+      handleChangeMusic(true)
     }
   }
 
