@@ -131,7 +131,12 @@ export const BarPlayerInfo = styled.div`
     }
   }
 `
-export const BarOperator = styled.div`
+
+interface IBarOperator {
+  playMode: number
+}
+
+export const BarOperator = styled.div<IBarOperator>`
   display: flex;
   position: relative;
   top: 5px;
@@ -168,7 +173,16 @@ export const BarOperator = styled.div`
     }
 
     .loop {
-      background-position: -66px -248px;
+      background-position: ${(props) => {
+        switch (props.playMode) {
+          case 0:
+            return '-66px -248px'
+          case 1:
+            return '-66px -344px'
+          case 2:
+            return '-3px -344px'
+        }
+      }};
     }
 
     .playlist {

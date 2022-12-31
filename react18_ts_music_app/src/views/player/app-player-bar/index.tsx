@@ -12,7 +12,7 @@ import { shallowEqualApp, useAppDispatch, useAppSelector } from '@/store'
 import { formatTime, getImageSize } from '@/utils/format'
 import { getPlaySong } from '@/utils/handle-player'
 import { IProps } from './type'
-import { changeLyricsIndexAction } from '../store/player'
+import { changeLyricsIndexAction, changePlayModeAction } from '../store/player'
 
 const AppPlayerBar: FC<IProps> = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -22,11 +22,12 @@ const AppPlayerBar: FC<IProps> = () => {
   const [isSliding, setIsSliding] = useState(false)
 
   const audioRef = useRef<HTMLAudioElement>(null)
-  const { currentSong, lyrics, lyricIndex } = useAppSelector(
+  const { currentSong, lyrics, lyricIndex, playMode } = useAppSelector(
     (state) => ({
       currentSong: state.player.currentSong,
       lyrics: state.player.lyrics,
-      lyricIndex: state.player.lyricIndex
+      lyricIndex: state.player.lyricIndex,
+      playMode: state.player.playMode
     }),
     shallowEqualApp
   )
@@ -98,6 +99,12 @@ const AppPlayerBar: FC<IProps> = () => {
     setIsSliding(false)
   }
 
+  function handleChangePlayMode() {
+    let newPlayMode = playMode + 1
+    if (newPlayMode > 2) newPlayMode = 0
+    dispatch(changePlayModeAction(newPlayMode))
+  }
+
   return (
     <PlayerBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
@@ -138,7 +145,7 @@ const AppPlayerBar: FC<IProps> = () => {
             </div>
           </div>
         </BarPlayerInfo>
-        <BarOperator>
+        <BarOperator playMode={playMode}>
           <div className="left">
             <button className="btn pip"></button>
             <button className="btn sprite_playbar favor"></button>
@@ -146,7 +153,10 @@ const AppPlayerBar: FC<IProps> = () => {
           </div>
           <div className="right sprite_playbar">
             <button className="btn sprite_playbar volume"></button>
-            <button className="btn sprite_playbar loop"></button>
+            <button
+              className="btn sprite_playbar loop"
+              onClick={handleChangePlayMode}
+            ></button>
             <button className="btn sprite_playbar playlist"></button>
           </div>
         </BarOperator>

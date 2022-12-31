@@ -45,6 +45,7 @@ interface IPlayerState {
   lyricIndex: number
   playSongList: any[]
   playSongIndex: number
+  playMode: number
 }
 
 const initialState: IPlayerState = {
@@ -267,7 +268,8 @@ const initialState: IPlayerState = {
       tns: ['热门版']
     }
   ],
-  playSongIndex: -1
+  playSongIndex: -1,
+  playMode: 0 // 0:顺序播放  1:随机播放  2: 单曲播放
 }
 
 const playerSlice = createSlice({
@@ -288,6 +290,9 @@ const playerSlice = createSlice({
     },
     changePlaySongListAction(state, { payload }) {
       state.playSongList = payload
+    },
+    changePlayModeAction(state, { payload }) {
+      state.playMode = payload
     }
   }
 })
@@ -297,6 +302,8 @@ export const {
   changeLyricsAction,
   changeLyricsIndexAction,
   changePlaySongIndexAction,
-  changePlaySongListAction
+  changePlaySongListAction,
+  changePlayModeAction
 } = playerSlice.actions
+
 export default playerSlice.reducer
