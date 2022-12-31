@@ -16,12 +16,19 @@ export const fetchCurrentSongAction = createAsyncThunk<
       if (!res.songs.length) return
       const song = res.songs[0]
 
+      const newPlaySongList = [...playSongList]
+      newPlaySongList.push(song)
+      dispatch(changeCurrentSongAction(song))
+      dispatch(changePlaySongListAction(newPlaySongList))
+      dispatch(changePlaySongIndexAction(newPlaySongList.length - 1))
+
       dispatch(changeCurrentSongAction(song))
     })
   } else {
     // 如果歌曲已经存在列表里
     const song = playSongList[findIndex]
-    dispatch(changeCurrentSongAction)
+    dispatch(changeCurrentSongAction(song))
+    dispatch(changePlaySongIndexAction(findIndex))
   }
 
   getSongLyric(id).then((res) => {
@@ -275,6 +282,12 @@ const playerSlice = createSlice({
     },
     changeLyricsIndexAction(state, { payload }) {
       state.lyricIndex = payload
+    },
+    changePlaySongIndexAction(state, { payload }) {
+      state.playSongIndex = payload
+    },
+    changePlaySongListAction(state, { payload }) {
+      state.playSongList = payload
     }
   }
 })
@@ -282,6 +295,8 @@ const playerSlice = createSlice({
 export const {
   changeCurrentSongAction,
   changeLyricsAction,
-  changeLyricsIndexAction
+  changeLyricsIndexAction,
+  changePlaySongIndexAction,
+  changePlaySongListAction
 } = playerSlice.actions
 export default playerSlice.reducer
