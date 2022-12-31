@@ -113,6 +113,13 @@ const AppPlayerBar: FC<IProps> = () => {
     dispatch(changePlayModeAction(newPlayMode))
   }
 
+  function handleTimeEnded() {
+    if (playMode === 2) {
+      audioRef.current!.currentTime = 0
+      audioRef.current?.play()
+    }
+  }
+
   return (
     <PlayerBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
@@ -174,7 +181,11 @@ const AppPlayerBar: FC<IProps> = () => {
             <button className="btn sprite_playbar playlist"></button>
           </div>
         </BarOperator>
-        <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} />
+        <audio
+          ref={audioRef}
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={handleTimeEnded}
+        />
       </div>
     </PlayerBarWrapper>
   )
